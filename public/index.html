@@ -1,0 +1,174 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/questions.js"></script>
+    <title>Quiz de Eletrônicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .quiz-container {
+            display: none;
+        }
+
+        .quiz-container.active {
+            display: block;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option {
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .promo-container {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .promo-container.active {
+            display: block;
+        }
+
+        .shop-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .shop-button:hover {
+            background: #0056b3;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #007bff;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <div class="quiz-container active" id="quiz">
+            <div class="question">
+                <h2>Carregando pergunta...</h2>
+            </div>
+            <div class="options"></div>
+        </div>
+
+        <div class="promo-container" id="promo">
+            <h2>Parabéns! 🎉</h2>
+            <p>Você ganhou 15% de desconto na sua primeira compra!</p>
+            <a href="/store.html" class="shop-button">Ir para a loja</a>
+        </div>
+    </div>
+
+    <script>
+       
+
+        let currentQuestion = 0;
+        const quizContainer = document.querySelector('.quiz-container');
+        const promoContainer = document.querySelector('.promo-container');
+        const questionElement = document.querySelector('.question');
+        const optionsElement = document.querySelector('.options');
+        const progressBar = document.querySelector('.progress');
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            questionElement.innerHTML = `<h2>${question.question}</h2>`;
+            
+            optionsElement.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                button.addEventListener('click', () => selectOption(option));
+                optionsElement.appendChild(button);
+            });
+
+            updateProgress();
+        }
+
+        function selectOption(option) {
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showPromo();
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentQuestion / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function showPromo() {
+            quizContainer.classList.remove('active');
+            promoContainer.classList.add('active');
+            sessionStorage.setItem('promo', 'true');
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>

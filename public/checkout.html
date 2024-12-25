@@ -1,0 +1,296 @@
+<!-- public/checkout.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <nav class="nav">
+        <h1>Checkout</h1>
+        <div>
+            <button onclick="returnPage()" class="logout-btn" title="Voltar">Voltar</button>
+            <button onclick="logout()" class="logout-btn" title="Sair">Sair</button>
+        </div>
+    </nav>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+
+        .form-section h2,
+        .order-summary h2 {
+            margin-bottom: 1.5rem;
+            color: #343a40;
+        }
+
+        .order-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .order-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #dee2e6;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            background: #0056b3;
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font: 600
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <div class="form-section">
+            <h2>Informações de Entrega</h2>
+            <form id="checkout-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Endereço</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">Cidade</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">Estado</label>
+                    <input type="text" id="state" required>
+                </div>
+                <div class="form-group">
+                    <label for="zip">CEP</label>
+                    <input type="text" id="zip" required>
+                </div>
+                <h2>Informações de Pagamento</h2>
+                <div class="form-group">
+                    <label for="card">Número do Cartão</label>
+                    <input type="text" id="card" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry">Data de Validade</label>
+                    <input type="text" id="expiry" placeholder="MM/AA" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" required>
+                </div>
+                <button type="submit" class="submit-button">Finalizar Compra</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h2>Resumo do Pedido</h2>
+            <div class="order-items" id="order-items"></div>
+            <div class="order-total">
+                Total: R$ <span id="order-total">0,00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function returnPage() {
+            window.location.href = '/store.html';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === 'teste@teste.com' && password === '123456') {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userEmail', email);
+                window.location.href = '/store.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+
+
+        // Add at the start of the file
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const userEmail = sessionStorage.getItem('userEmail');
+
+            if (!isLoggedIn || !userEmail) {
+                window.location.href = '/login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // Add to document load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkAuth()) return;
+            // ...existing checkout page logic...
+
+            // Pre-fill email if exists
+            const userEmail = sessionStorage.getItem('userEmail');
+            if (userEmail) {
+                document.getElementById('email').value = userEmail;
+            }
+        });
+
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userEmail');
+            window.location.href = '/login.html';
+        }
+
+
+        let cart = [];
+
+        function loadCart() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                renderOrderSummary();
+            }
+        }
+
+        function renderOrderSummary() {
+            const orderItems = document.getElementById('order-items');
+            const orderTotal = document.getElementById('order-total');
+
+            orderItems.innerHTML = cart.map(item => `
+                <div class="order-item">
+                    <span>${item.name} × ${item.quantity}</span>
+                    <span>R$ ${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            orderTotal.textContent = total.toFixed(2);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Aqui você implementaria a lógica de processamento do pagamento
+            alert('Pedido realizado com sucesso!');
+
+            // Limpar o carrinho e redirecionar para a página inicial
+            localStorage.removeItem('cart');
+            window.location.href = '/store.html';
+        }
+
+        // Inicializar a página
+        loadCart();
+    </script>
+</body>
+
+</html>

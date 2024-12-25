@@ -1,0 +1,557 @@
+<!-- public/product-details.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/products.js"></script>
+    <title>Detalhes do Produto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+        }
+
+        body {
+            background: var(--background-color);
+        }
+
+        .header {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        .product-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .product-gallery {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #343a40;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .installments {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+
+        .color-options {
+            margin-bottom: 2rem;
+        }
+
+        .color-title {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .color-grid {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .color-option.active {
+            border-color: var(--primary-color);
+        }
+
+        .storage-options {
+            margin-bottom: 2rem;
+        }
+
+        .storage-title {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .storage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .storage-option {
+            padding: 0.8rem;
+            border: 2px solid #dee2e6;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .storage-option.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart:hover {
+            background: #0056b3;
+        }
+
+        .product-description {
+            margin-top: 2rem;
+            line-height: 1.6;
+        }
+
+        .specifications {
+            margin-top: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        @media (max-width: 768px) {
+            .product-gallery {
+                padding: 1rem;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+            }
+
+            .thumbnail {
+                height: 60px;
+            }
+        }
+
+
+        .subscription-options {
+            margin: 2rem 0;
+        }
+
+        .subscription-toggle {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .sub-type {
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .sub-type.active {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .subscription-info {
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+
+        .add-to-cart {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/store.html" class="back-button">← Voltar à loja</a>
+            <h1>Detalhes do Produto</h1>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="product-details">
+            <div class="product-gallery">
+                <div class="main-image" id="main-image">
+                    <img src="" alt="Product Image" id="product-main-image">
+                </div>
+                <div class="thumbnail-grid" id="thumbnail-container">
+                    <!-- Thumbnails will be dynamically added -->
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title" id="product-title"></h1>
+
+                <div class="subscription-options">
+                    <h3>Plano de Assinatura</h3>
+                    <div class="subscription-toggle">
+                        <button class="sub-type active" onclick="toggleSubscription('monthly')">Mensal</button>
+                        <button class="sub-type" onclick="toggleSubscription('annual')">Anual</button>
+                    </div>
+                    <div class="product-price" id="product-price"></div>
+                    <p class="subscription-info" id="subscription-info"></p>
+                </div>
+
+                <div class="color-options">
+                    <h3 class="color-title">Cor</h3>
+                    <div class="color-grid" id="color-grid">
+                        <!-- Colors will be dynamically added -->
+                    </div>
+                </div>
+
+                <button class="add-to-cart" onclick="addToCart()">Assinar Agora</button>
+
+                <div class="product-description">
+                    <h3>Descrição</h3>
+                    <p id="product-description"></p>
+                </div>
+
+                <div class="specifications">
+                    <h3>Especificações</h3>
+                    <div id="specifications-container">
+                        <!-- Specifications will be dynamically added -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        // Dados do produto (em uma implementação real, viriam do backend)
+        // const product = {
+        //     id: 1,
+        //     name: "iPhone 13 Pro",
+        //     price: 6999.99,
+        //     colors: ["#007bff", "#28a745", "#dc3545"],
+        //     storage: ["128GB", "256GB", "512GB"],
+        //     images: ["📱", "📱", "📱", "📱"]
+        // };
+
+        // Gerenciar seleção de cores
+        const colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Gerenciar seleção de armazenamento
+        const storageOptions = document.querySelectorAll('.storage-option');
+        storageOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                storageOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Gerenciar seleção de miniaturas
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function () {
+                thumbnails.forEach(thumb => thumb.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('main-image').innerHTML = product.images[index];
+            });
+        });
+
+        // Adicione no início do script da página de detalhes
+        function getProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseInt(urlParams.get('id'));
+        }
+
+        // Carregar dados do produto específico
+        const productId = getProductId();
+
+        let selectedColor = "";
+        let selectedStorage = "";
+
+
+        function selectColor(colorName, element) {
+            // Remove active class from all color options
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            // Add active class to clicked element
+            element.classList.add('active');
+            // Update selected color
+            selectedColor = colorName;
+        }
+
+        function selectStorage(size, element) {
+            const product = products[getProductId()];
+            // Remove active class from all storage options
+            document.querySelectorAll('.storage-option').forEach(opt => opt.classList.remove('active'));
+            // Add active class to clicked element
+            element.classList.add('active');
+            // Update selected storage
+            selectedStorage = size;
+            // Update price display
+            const newPrice = product.storagePrices[size];
+            document.getElementById('product-price').textContent = `R$ ${newPrice.toFixed(2)}`;
+            document.getElementById('installments').textContent = `em até 12x de R$ ${(newPrice / 12).toFixed(2)} sem juros`;
+        }
+
+        function updateMainImage(imageUrl) {
+            document.getElementById('product-main-image').src = imageUrl;
+            // Update thumbnails active state
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                if (thumb.querySelector('img').src.includes(imageUrl)) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        let subscriptionType = 'monthly';
+
+        function loadProductDetails(productId) {
+            const product = products[productId];
+            if (!product) return;
+
+            // Update basic info
+            document.getElementById('product-title').textContent = product.title;
+            updatePriceDisplay(product);
+            document.getElementById('product-description').textContent = product.description;
+
+            // Update images
+            document.getElementById('product-main-image').src = product.images[0];
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+            thumbnailContainer.innerHTML = product.images.map((img, index) => `
+        <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="updateMainImage('${img}')">
+            <img src="${img}" alt="Thumbnail ${index + 1}">
+        </div>
+    `).join('');
+
+            // Update colors
+            const colorGrid = document.getElementById('color-grid');
+            colorGrid.innerHTML = product.colors.map((color, index) => `
+        <div class="color-option ${index === 0 ? 'active' : ''}" 
+             style="background: ${color.code}"
+             onclick="selectColor('${color.name}', this)">
+        </div>
+    `).join('');
+
+            // Update specifications
+            const specsContainer = document.getElementById('specifications-container');
+            specsContainer.innerHTML = Object.entries(product.specifications).map(([key, value]) => `
+        <div class="spec-item">
+            <span>${key}</span>
+            <span>${value}</span>
+        </div>
+    `).join('');
+
+            selectedColor = product.colors[0].name;
+        }
+
+        function toggleSubscription(type) {
+            subscriptionType = type;
+
+            // Clear all active states
+            document.querySelectorAll('.sub-type').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Add active state to clicked button
+            const activeButton = document.querySelector(`.sub-type[onclick*="${type}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Update price display
+            const product = products[getProductId()];
+            if (product) {
+                const price = type === 'monthly' ? product.monthlyPrice : product.annualPrice;
+                document.getElementById('product-price').textContent = `R$ ${price.toFixed(2)}`;
+
+                // Update subscription info text
+                document.getElementById('subscription-info').textContent =
+                    type === 'monthly' ? 'Pagamento mensal' : 'Economia de 50% no plano anual';
+            }
+        }
+
+        function updatePriceDisplay(product) {
+            const price = subscriptionType === 'monthly' ? product.monthlyPrice : product.annualPrice;
+            document.getElementById('product-price').textContent = `R$ ${price.toFixed(2)}`;
+            document.getElementById('subscription-info').textContent =
+                subscriptionType === 'monthly' ? 'Pagamento mensal' : 'Pagamento anual com desconto';
+        }
+
+        function addToCart() {
+            const product = products[getProductId()];
+            if (!product) return;
+
+            const item = {
+                id: product.id,
+                title: product.title,
+                price: subscriptionType === 'monthly' ? product.monthlyPrice : product.annualPrice,
+                selectedColor,
+                subscriptionType,
+                quantity: 1
+            };
+
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Plano adicionado ao carrinho!');
+        }
+
+        function updateMainImage(imageUrl) {
+            document.getElementById('product-main-image').src = imageUrl;
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.toggle('active', thumb.querySelector('img').src.includes(imageUrl));
+            });
+        }
+
+        function selectColor(colorName, element) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            selectedColor = colorName;
+        }
+
+
+
+        // Add to existing DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const productId = getProductId();
+            loadProductDetails(productId);
+            // Set initial subscription type
+            toggleSubscription('monthly');
+        });
+
+    </script>
+</body>
+
+</html>
