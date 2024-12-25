@@ -400,7 +400,7 @@
         }
 
         function selectStorage(size, element) {
-            const product = products[getProductId()];
+            const product = products.find((element) => element.id === getProductId());
             // Remove active class from all storage options
             document.querySelectorAll('.storage-option').forEach(opt => opt.classList.remove('active'));
             // Add active class to clicked element
@@ -428,7 +428,7 @@
         let subscriptionType = 'monthly';
 
         function loadProductDetails(productId) {
-            const product = products[productId];
+            const product = products.find((element) => element.id === productId);
             if (!product) return;
 
             // Update basic info
@@ -440,28 +440,28 @@
             document.getElementById('product-main-image').src = product.images[0];
             const thumbnailContainer = document.getElementById('thumbnail-container');
             thumbnailContainer.innerHTML = product.images.map((img, index) => `
-        <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="updateMainImage('${img}')">
-            <img src="${img}" alt="Thumbnail ${index + 1}">
-        </div>
-    `).join('');
+                <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="updateMainImage('${img}')">
+                    <img src="${img}" alt="Thumbnail ${index + 1}">
+                </div>
+            `).join('');
 
             // Update colors
             const colorGrid = document.getElementById('color-grid');
             colorGrid.innerHTML = product.colors.map((color, index) => `
-        <div class="color-option ${index === 0 ? 'active' : ''}" 
-             style="background: ${color.code}"
-             onclick="selectColor('${color.name}', this)">
-        </div>
-    `).join('');
+                <div class="color-option ${index === 0 ? 'active' : ''}" 
+                    style="background: ${color.code}"
+                    onclick="selectColor('${color.name}', this)">
+                </div>
+            `).join('');
 
             // Update specifications
             const specsContainer = document.getElementById('specifications-container');
             specsContainer.innerHTML = Object.entries(product.specifications).map(([key, value]) => `
-        <div class="spec-item">
-            <span>${key}</span>
-            <span>${value}</span>
-        </div>
-    `).join('');
+                <div class="spec-item">
+                    <span>${key}</span>
+                    <span>${value}</span>
+                </div>
+            `).join('');
 
             selectedColor = product.colors[0].name;
         }
@@ -481,7 +481,7 @@
             }
 
             // Update price display
-            const product = products[getProductId()];
+            const product = products.find((element) => element.id === getProductId());
             if (product) {
                 const price = type === 'monthly' ? product.monthlyPrice : product.annualPrice;
                 document.getElementById('product-price').textContent = `R$ ${price.toFixed(2)}`;
@@ -500,7 +500,7 @@
         }
 
         function addToCart() {
-            const product = products[getProductId()];
+            const product = products.find((element) => element.id === getProductId());
             if (!product) return;
 
             const item = {

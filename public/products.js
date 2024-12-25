@@ -1,5 +1,5 @@
-const products = {
-    1: {
+const products = [
+    {
         id: 1,
         title: "iPhone 13",
         category: "iphone",
@@ -18,7 +18,7 @@ const products = {
             "Câmera": "Sistema Duplo 12MP"
         }
     },
-    2: {
+    {
         id: 2,
         title: "iPhone 13 Pro Max",
         category: "pro",
@@ -37,7 +37,7 @@ const products = {
             "Câmera": "Sistema Pro Triple 12MP"
         }
     },
-    3: {
+    {
         id: 3,
         title: "MacBook Pro",
         category: "notebook",
@@ -56,7 +56,7 @@ const products = {
             "RAM": "8GB"
         }
     },
-    4: {
+    {
         id: 4,
         title: "iPhone 11",
         category: "iphone11",
@@ -75,7 +75,7 @@ const products = {
             "Câmera": "Sistema Duplo 12MP"
         }
     },
-    5: {
+    {
         id: 5,
         title: "PS5",
         category: "ps5",
@@ -93,7 +93,7 @@ const products = {
             "RAM": "16GB GDDR6"
         }
     },
-    6: {
+    {
         id: 6,
         title: "Apple Watch",
         category: "watch",
@@ -112,6 +112,6 @@ const products = {
             "GPS": "Sim"
         }
     }
-};
+];
 
 window.products = products;

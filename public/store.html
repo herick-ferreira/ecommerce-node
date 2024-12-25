@@ -373,7 +373,7 @@
 
         // Update addToCart function
         function addToCart(productId) {
-            const product = products[productId];
+            const product = products.find((element) => element.id === getProductId());
             if (!product) return;
 
             const item = {
@@ -486,8 +486,6 @@
             const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
             const cartContainer = document.getElementById('cart-items');
             const hasPromo = sessionStorage.getItem('promo') === 'true';
-
-            console.log(products[1].images[0])
 
             cartContainer.innerHTML = cartItems.map(item => `
                 <div class="cart-item">
