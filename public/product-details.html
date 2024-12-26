@@ -231,13 +231,36 @@
             border-bottom: 1px solid #dee2e6;
         }
 
-        @media (max-width: 768px) {
-            .product-gallery {
+        /* Add these media queries to your existing <style> tag */
+
+        /* For tablets and smaller desktops */
+        @media (max-width: 1024px) {
+            .main-container {
                 padding: 1rem;
+            }
+
+            .product-details {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
             }
 
             .main-image {
                 height: 300px;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* For tablets and landscape phones */
+        @media (max-width: 768px) {
+            .product-details {
+                grid-template-columns: 1fr;
+            }
+
+            .product-gallery {
+                padding: 1rem;
             }
 
             .thumbnail-grid {
@@ -247,6 +270,81 @@
 
             .thumbnail {
                 height: 60px;
+            }
+
+            .subscription-toggle {
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .sub-type {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* For small phones */
+        @media (max-width: 480px) {
+            .nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .main-container {
+                margin-top: 100px;
+                padding: 0.5rem;
+            }
+
+            .product-details {
+                border-radius: 0;
+            }
+
+            .product-gallery {
+                padding: 0.5rem;
+            }
+
+            .main-image {
+                height: 250px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-info {
+                padding: 1rem;
+            }
+
+            .product-title {
+                font-size: 1.25rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+
+            .color-grid {
+                gap: 0.5rem;
+            }
+
+            .color-option {
+                width: 30px;
+                height: 30px;
+            }
+
+            .subscription-toggle {
+                flex-direction: column;
+            }
+
+            .specifications {
+                font-size: 0.9rem;
+            }
+
+            .spec-item {
+                flex-direction: column;
+                gap: 0.25rem;
+                padding: 0.5rem 0;
             }
         }
 
@@ -294,7 +392,7 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="/store.html" class="back-button">← Voltar à loja</a>
+            <a href="/store" class="back-button">← Voltar à loja</a>
             <h1>Detalhes do Produto</h1>
         </nav>
     </header>
@@ -409,8 +507,8 @@
             selectedStorage = size;
             // Update price display
             const newPrice = product.storagePrices[size];
-            document.getElementById('product-price').textContent = `R$ ${newPrice.toFixed(2)}`;
-            document.getElementById('installments').textContent = `em até 12x de R$ ${(newPrice / 12).toFixed(2)} sem juros`;
+            document.getElementById('product-price').textContent = `R$ ${newPrice.toFixed(2).replace('.', ',')}`;
+            document.getElementById('installments').textContent = `em até 12x de R$ ${(newPrice / 12).toFixed(2).replace('.', ',')} sem juros`;
         }
 
         function updateMainImage(imageUrl) {
@@ -484,7 +582,7 @@
             const product = products.find((element) => element.id === getProductId());
             if (product) {
                 const price = type === 'monthly' ? product.monthlyPrice : product.annualPrice;
-                document.getElementById('product-price').textContent = `R$ ${price.toFixed(2)}`;
+                document.getElementById('product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
 
                 // Update subscription info text
                 document.getElementById('subscription-info').textContent =
@@ -494,7 +592,7 @@
 
         function updatePriceDisplay(product) {
             const price = subscriptionType === 'monthly' ? product.monthlyPrice : product.annualPrice;
-            document.getElementById('product-price').textContent = `R$ ${price.toFixed(2)}`;
+            document.getElementById('product-price').textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
             document.getElementById('subscription-info').textContent =
                 subscriptionType === 'monthly' ? 'Pagamento mensal' : 'Pagamento anual com desconto';
         }

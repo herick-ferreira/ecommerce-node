@@ -25,7 +25,8 @@ const products = [
         monthlyPrice: 59.30,
         annualPrice: 356.00,
         images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FIPHONE%2B13%2BPRO%2FiPhone%2B13%2BPro%2BThumb.png&w=1920&q=75",
-                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FIPHONE%2B13%2BPRO%2FiPhone%2B13%2BPro%2B-%2B2.jpg&w=1920&q=75"],
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FIPHONE%2B13%2BPRO%2FiPhone%2B13%2BPro%2B3.jpg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FIPHONE%2B13%2BPRO%2FiPhone%2B13%2BPro%2B4.jpg&w=1920&q=75"],
         colors: [
             { name: "Grafite", code: "#333333" },
             { name: "Dourado", code: "#FFD700" }
@@ -43,8 +44,10 @@ const products = [
         category: "notebook",
         monthlyPrice: 74.21,
         annualPrice: 440.00,
-        images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMACBOOK%2BPRO%2BMacBook%2BPro%2BThumb.png&w=1920&q=75",
-                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMACBOOK%2BPRO%2BMacBook%2BPro%2B-%2B2.jpg&w=1920&q=75"],
+        images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMacbook%2BAir%2BM113%2FMacboook%2BAir%2B1.png&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMacbook%2BAir%2BM113%2FMacbook%2BAir%2B2.jpg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMacbook%2BAir%2BM113%2FMacbook%2BAir%2B3.jpg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FMacbook%2BAir%2BM113%2FMacbook%2BAir%2B4.jpg&w=1920&q=75"],
         colors: [
             { name: "Cinza Espacial", code: "#4A4A4A" },
             { name: "Prata", code: "#C0C0C0" }
@@ -81,8 +84,11 @@ const products = [
         category: "ps5",
         monthlyPrice: 82.00,
         annualPrice: 490.00,
-        images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FPS5%2BPS5%2BThumb.png&w=1920&q=75",
-                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FPS5%2BPS5%2B-%2B2.jpg&w=1920&q=75"],
+        images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fv2-allugator-images.s3.amazonaws.com%2Fproducts%2Fplay-5_site-ago.2024.png&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fv2-allugator-images.s3.amazonaws.com%2Fproducts%2F2%2520%25281%2529.jpeg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fv2-allugator-images.s3.amazonaws.com%2Fproducts%2F3%2520%25281%2529.jpeg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fv2-allugator-images.s3.amazonaws.com%2Fproducts%2F4%2520%25281%2529.jpeg&w=1920&q=75",
+                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fv2-allugator-images.s3.amazonaws.com%2Fproducts%2F5%2520%25281%2529.jpeg&w=1920&q=75"],
         colors: [
             { name: "Branco", code: "#FFFFFF" }
         ],
@@ -99,8 +105,10 @@ const products = [
         category: "watch",
         monthlyPrice: 16.00,
         annualPrice: 96.00,
-        images: ["https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FAPPLE%2BWATCH%2BApple%2BWatch%2BThumb.png&w=1920&q=75",
-                 "https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fnew-site%2FAPPLE%2BWATCH%2BApple%2BWatch%2B-%2B2.jpg&w=1920&q=75"],
+        images: ["https://a-static.mlcdn.com.br/800x560/apple-watch-se-gps-caixa-prateada-de-aluminio-de-40-mm-pulseira-esportiva-denim-tamanho-p-m-mxec3be-a/kabum/634547/2656cce9e292e98ffb5f60d94c98fddd.jpeg",
+                 "https://a-static.mlcdn.com.br/800x560/apple-watch-se-gps-caixa-prateada-de-aluminio-de-40-mm-pulseira-esportiva-denim-tamanho-p-m-mxec3be-a/kabum/634547/010ca993b7528859bca811daaa481eec.jpeg",
+                 "https://a-static.mlcdn.com.br/800x560/apple-watch-se-gps-caixa-prateada-de-aluminio-de-40-mm-pulseira-esportiva-denim-tamanho-p-m-mxec3be-a/kabum/634547/10ef619645accdb16dab78f0afa10ff7.jpeg",
+                 "https://a-static.mlcdn.com.br/800x560/apple-watch-se-gps-caixa-prateada-de-aluminio-de-40-mm-pulseira-esportiva-denim-tamanho-p-m-mxec3be-a/kabum/634547/f334672f2452f50296d3c68ff4c3dfbe.jpeg"],
         colors: [
             { name: "Preto", code: "#000000" },
             { name: "Prata", code: "#C0C0C0" }

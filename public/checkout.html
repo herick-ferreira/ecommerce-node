@@ -1,4 +1,3 @@
-<!-- public/checkout.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -202,7 +201,7 @@
     <script>
 
         function returnPage() {
-            window.location.href = '/store.html';
+            window.location.href = '/store';
         }
 
         function handleLogin(event) {
@@ -214,7 +213,7 @@
             if (email === 'teste@teste.com' && password === '123456') {
                 sessionStorage.setItem('isLoggedIn', 'true');
                 sessionStorage.setItem('userEmail', email);
-                window.location.href = '/store.html';
+                window.location.href = '/store';
             } else {
                 document.getElementById('error-message').style.display = 'block';
             }
@@ -227,7 +226,7 @@
             const userEmail = sessionStorage.getItem('userEmail');
 
             if (!isLoggedIn || !userEmail) {
-                window.location.href = '/login.html';
+                window.location.href = '/login';
                 return false;
             }
             return true;
@@ -248,7 +247,7 @@
         function logout() {
             sessionStorage.removeItem('isLoggedIn');
             sessionStorage.removeItem('userEmail');
-            window.location.href = '/login.html';
+            window.location.href = '/login';
         }
 
 
@@ -285,7 +284,7 @@
 
             // Limpar o carrinho e redirecionar para a página inicial
             localStorage.removeItem('cart');
-            window.location.href = '/store.html';
+            window.location.href = '/store';
         }
 
         // Inicializar a página

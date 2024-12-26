@@ -125,7 +125,7 @@
                 sessionStorage.setItem('isLoggedIn', 'true');
                 
                 // Redireciona para store
-                window.location.href = '/store.html';
+                window.location.href = '/store';
             } else {
                 document.getElementById('error-message').style.display = 'block';
             }
@@ -134,7 +134,7 @@
         // Verifica se já está logado
         window.onload = function() {
             if (sessionStorage.getItem('isLoggedIn') === 'true') {
-                window.location.href = '/store.html';
+                window.location.href = '/store';
             }
         }
     </script>

@@ -1,4 +1,3 @@
-<!-- public/store.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -352,7 +351,7 @@
             const productsGrid = document.getElementById('products-grid');
             productsGrid.innerHTML = Object.values(products).map(product => `
                     <div class="product-card">
-                        <div class="product-image" onclick="window.location.href='/product-details.html?id=${product.id}'">
+                        <div class="product-image" onclick="window.location.href='/details?id=${product.id}'">
                             <img class="img-product" src="${product.images[0] || '📱'}" alt="${product.title}">
                         </div>
                         <div class="product-info">
@@ -360,7 +359,7 @@
                             <p class="product-price">R$ ${product.monthlyPrice.toFixed(2).replace('.', ',')}/mês</p>
                             <p class="subscription-info">ou R$ ${product.annualPrice.toFixed(2).replace('.', ',')} no plano anual</p>
                         </div>
-                        <a href="/product-details.html?id=${product.id}" class="details-link">Ver detalhes</a>
+                        <a href="/details?id=${product.id}" class="details-link">Ver detalhes</a>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">
                             Assinar Agora
                         </button>
@@ -373,7 +372,7 @@
 
         // Update addToCart function
         function addToCart(productId) {
-            const product = products.find((element) => element.id === getProductId());
+            const product = products.find((element) => element.id === productId);
             if (!product) return;
 
             const item = {
@@ -388,6 +387,7 @@
             cart.push(item);
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
+            updateCartDisplay();
             alert('Plano adicionado ao carrinho!');
         }
 
@@ -401,7 +401,7 @@
             cartContainer.innerHTML = cartItems.map(item => `
                 <div class="cart-item">
                     <div class="cart-item-image">
-                        <img src="${products[item.id].images[0]}" alt="${item.title}">
+                        <img src="${products.find(el => el.id === item.id).images[0]}" alt="${item.title}">
                     </div>
                     <div class="cart-item-info">
                         <h4>${item.title}</h4>
@@ -466,13 +466,13 @@
 
         function goToCheckout() {
             // Save cart state
-            if (localStorage.getItem('cart') === '[]') {
+            if (['[]', null].includes(localStorage.getItem('cart')) ) {
                 alert('Adicione itens ao carrinho antes de finalizar a compra!');
                 return;
             }
 
             localStorage.setItem('checkoutCart', localStorage.getItem('cart'));
-            window.location.href = '/checkout.html';
+            window.location.href = '/checkout';
         }
 
         function clearCart() {
@@ -490,8 +490,8 @@
             cartContainer.innerHTML = cartItems.map(item => `
                 <div class="cart-item">
                     <div class="cart-item-image">
-                        ${products[item.id].images[0] ?
-                    `<img src="${products[item.id].images[0]}" alt="${item.title}">` :
+                        ${products.find(el => el.id === item.id).images[0] ?
+                    `<img src="${products.find(el => el.id === item.id).images[0]}" alt="${item.title}">` :
                     '📱'}
                     </div>
                     <div class="cart-item-info">
