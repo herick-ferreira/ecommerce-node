@@ -12,6 +12,23 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/store', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'store.html'));
+});
+
+app.get('/details', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-details.html'));
+});
+
+app.get('/checkout', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
+});
+
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
