@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <script src="/products.js"></script>
     <title>Loja de Eletrônicos</title>
     <style>
@@ -15,7 +17,7 @@
         }
 
         :root {
-            --primary-color: #007bff;
+            --primary-color: #298A52;
             --secondary-color: #6c757d;
             --background-color: #f8f9fa;
         }
@@ -64,7 +66,7 @@
 
         .main-container {
             max-width: 1200px;
-            margin: 80px auto 0;
+            margin: 10px auto 0;
             padding: 2rem;
         }
 
@@ -82,6 +84,7 @@
             margin-bottom: 1rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            max-width: 17rem;
         }
 
 
@@ -93,6 +96,7 @@
 
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
         .product-image {
@@ -171,7 +175,7 @@
             top: 0;
             right: -400px;
             width: 400px;
-            height: 100vh;
+            height: 95vh;
             background: white;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
             transition: right 0.3s ease;
@@ -316,6 +320,7 @@
                 display: flex;
                 align-items: center;
                 gap: 1rem;
+                max-width: 100%;
             }
 
             .product-image {
@@ -350,7 +355,7 @@
                 font-weight: bold;
             }
 
-           
+
 
         }
 
@@ -368,6 +373,299 @@
 
             .main-container {
                 padding: 0.2rem;
+                max-width: 100%;
+            }
+
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+
+
+        .product-catalog {
+            padding: 2rem 0;
+            background: #fff;
+            margin-top: 2.7rem;
+            max-width: 100%;
+        }
+
+        .product-catalog h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 800;
+        }
+
+        .product-catalog h5 {
+            text-align: left;
+            margin-left: 15px;
+            margin-bottom: .7rem;
+            font-size: 1rem;
+            color: #333;
+            font-weight: 400;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: #dfdede #f1f1f1;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 80px;
+            /* Adjust based on header height */
+        }
+
+        .categories::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .categories::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .categories::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .categories::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .category {
+            flex: 0 0 auto;
+            min-width: 120px;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .category img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            padding: 10px;
+            border: 2px solid #eee;
+            background-color: #EBEBE3;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .category {
+                min-width: 100px;
+            }
+
+            .categories {
+                margin-top: 60px;
+                justify-content: flex-start;
+                /* Adjust for smaller header on mobile */
+            }
+
+            .category img {
+                width: 70px;
+                height: 70px;
+                padding: 8px;
+            }
+        }
+
+
+        .payment-info {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .benefit-item i {
+            font-size: 2.5rem;
+            color: #9B9CA5;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: #333;
+        }
+
+        .benefit-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .payment-info {
+                padding: 2rem 1rem;
+            }
+        }
+
+
+
+        .footer {
+            background: #f8f9fa;
+            text-align: center;
+
+        }
+
+        .footer-top {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .footer-bottom {
+            padding: 2rem;
+            max-width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+
+        }
+
+        .footer-section>ul>li {
+            list-style: none
+        }
+
+        .footer-section>h3 {
+            color: #000
+        }
+
+        .footer-section>h4 {
+            color: var(--primary-color)
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-size: small;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2px;
+        }
+
+        .social-icons>a>i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .footer-content-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .card-flags {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .card-flags img {
+            height: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+
+            .card-flags img {
+                overflow: hidden;
+                max-width: 100%;
+            }
+        }
+
+
+        .footer-address {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #dee2e6;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .address-info {
+            margin-bottom: 1rem;
+        }
+
+        .address-info p,
+        .copyright p {
+            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .copyright {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .footer-address {
+                padding: 1rem;
             }
         }
     </style>
@@ -376,16 +674,165 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <h1>Loja de Eletrônicos</h1>
+            <a href="/store"><h1>Loja de Eletrônicos</h1></a>
             <div class="cart-icon" onclick="toggleCart()">
                 🛒 <span class="cart-count">0</span>
             </div>
         </nav>
     </header>
 
+
+
+    <div class="product-catalog">
+        <h5>Home > Catalogo </h5>
+        <br>
+        <h2>Catálogo de Produtos</h2>
+        <div class="categories">
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/smartphones.png" alt="Smartphones"
+                    onclick="changeProducts(event)">
+                <h3>Smartphones</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/notebooks.png" alt="Notebooks"
+                    onclick="changeProducts(event)">
+                <h3>Notebooks</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/desktop.png" alt="Desktops" onclick="changeProducts(event)">
+                <h3>Desktops</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/consoles.png" alt="Games" onclick="changeProducts(event)">
+                <h3>Games</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/tablets.png" alt="Tablets" onclick="changeProducts(event)">
+                <h3>Tablets</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/smartwatches.png" alt="Smartwatches"
+                    onclick="changeProducts(event)">
+                <h3>Smartwatches</h3>
+            </div>
+            <div class="category" onclick="changeProducts(event)">
+                <img src="https://www.allugator.com/catalog/linha-branca.png" alt="Cafeteiras"
+                    onclick="changeProducts(event)">
+                <h3>Cafeteiras</h3>
+            </div>
+        </div>
+    </div>
+
+
     <main class="main-container">
         <div class="products-grid" id="products-grid"></div>
     </main>
+
+    <div class="payment-info">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-credit-card"></i>
+                <h3>Pagamentos</h3>
+                <p>Pagamentos no PIX ou em até 12x sem juros no cartão de crédito</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-truck"></i>
+                <h3>Frete grátis</h3>
+                <p>Entregamos para todo Brasil.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Proteção</h3>
+                <p>Garantimos cobertura contra danos, roubo e furto qualificado</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-headset"></i>
+                <h3>Tire suas dúvidas</h3>
+                <p>Para tirar dúvidas entre em contato via WhatsApp em +55 31 9109-5737 ou acesse nossa Central de
+                    Ajuda.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NOSSAS REDES SOCIAIS</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>SOBRE NÓS</h4>
+                    <ul>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>SERVIÇOS</h4>
+                    <ul>
+                        <li><a href="#">Produtos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>SEGURANÇA</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Proteção de dados</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>SUPORTE</h4>
+                    <ul>
+                        <li><a href="#">Central de ajuda</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-content-bottom">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Contatos</h4>
+                        <p>E-mail: contato@allugator.com</p>
+                        <p>WhatsApp: +55 31 9109-5737</p>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <img src="https://www.allugator.com/reclame-aqui.png" alt="Reclame Aqui">
+                    <img src="https://www.allugator.com/pagar-me.png" alt="Pagar.me">
+                    <div class="card-flags">
+                        <img src="https://www.allugator.com/cartoes.png" alt="Visa">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="footer-address">
+        <div class="address-info">
+            <p>Rua Maranhão, 330, Santa Efigênia</p>
+            <p>Belo Horizonte - MG 30150-330</p>
+            <p>CNPJ: 25.053.921/0001-43</p>
+        </div>
+        <div class="copyright">
+            <p>©Allugator Assinatura de Eletrônicos 2024</p>
+        </div>
+    </div>
+
 
     <div class="cart-modal" id="cart-modal">
         <div class="cart-header">
@@ -402,12 +849,21 @@
         </div>
     </div>
 
+
+
+
     <script>
 
 
         function renderProducts() {
             const productsGrid = document.getElementById('products-grid');
-            productsGrid.innerHTML = Object.values(products).map(product => `
+            const urlParams = new URLSearchParams(window.location.search);
+            let product = urlParams.get('products')
+            product = product === null ? null : product.toLowerCase();
+
+            let productsFilter = product === null ? products : products.filter(p => p.catalog === product);
+
+            productsGrid.innerHTML = Object.values(productsFilter).map(product => `
                 <div class="product-card" onclick="goToDetails(${product.id})">
                     <div class="product-image">
                         <img class="img-product" src="${product.images[0] || '📱'}" alt="${product.title}">
@@ -575,7 +1031,62 @@
 
             document.getElementById('cart-total-amount').textContent = total;
         }
-        // Add this CSS to your existing <style> tag
+
+        function getProducts() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const product = urlParams.get('products')
+            const divCatalogsh5 = document.querySelector('.product-catalog h5');
+            const divCatalogsh2 = document.querySelector('.product-catalog h2');
+
+            if (product === null) {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Produtos';
+                divCatalogsh2.innerHTML = 'Catálogo de Produtos';
+            } else if (product === 'smartphones') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Smartphones';
+                divCatalogsh2.innerHTML = 'Catálogo de Smartphones';
+            } else if (product === 'notebooks') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Notebooks';
+                divCatalogsh2.innerHTML = 'Catálogo de Notebooks';
+            } else if (product === 'desktops') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Desktops';
+                divCatalogsh2.innerHTML = 'Catálogo de Desktops';
+            } else if (product === 'games') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Games';
+                divCatalogsh2.innerHTML = 'Catálogo de Games';
+            } else if (product === 'tablets') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Tablets';
+                divCatalogsh2.innerHTML = 'Catálogo de Tablets';
+            } else if (product === 'smartwatches') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Smartwatches';
+                divCatalogsh2.innerHTML = 'Catálogo de Smartwatches';
+            } else if (product === 'cafeteiras') {
+                divCatalogsh5.innerHTML = 'Home > Catalogo > Cafeteiras';
+                divCatalogsh2.innerHTML = 'Catálogo de Cafeteiras';
+            }
+            ;
+        }
+
+        function changeProducts(event) {
+
+            const textElement = event.target.closest('.category').querySelector('h3');
+
+            if (textElement.innerHTML === 'Smartphones') {
+                window.location.href = '/store?products=smartphones';
+            } else if (textElement.innerHTML === 'Notebooks') {
+                window.location.href = '/store?products=notebooks';
+            } else if (textElement.innerHTML === 'Desktops') {
+                window.location.href = '/store?products=desktops';
+            } else if (textElement.innerHTML === 'Games') {
+                window.location.href = '/store?products=games';
+            } else if (textElement.innerHTML === 'Tablets') {
+                window.location.href = '/store?products=tablets';
+            } else if (textElement.innerHTML === 'Smartwatches') {
+                window.location.href = '/store?products=smartwatches';
+            } else if (textElement.innerHTML === 'Cafeteiras') {
+                window.location.href = '/store?products=cafeteiras';
+            }
+
+        }
 
         // Add to document load
         document.addEventListener('DOMContentLoaded', () => {
@@ -583,6 +1094,7 @@
             updateCartDisplay();
             updateCartCount();
             updateCartTotal();
+            getProducts();
         });
     </script>
 </body>
